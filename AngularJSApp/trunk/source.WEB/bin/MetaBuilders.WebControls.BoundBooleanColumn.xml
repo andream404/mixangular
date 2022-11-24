@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MetaBuilders.WebControls.BoundBooleanColumn</name>
+    </assembly>
+    <members>
+        <member name="T:MetaBuilders.WebControls.BooleanSelectionMode">
+            <summary>
+            The BooleanSelectionMode enumeration defines different types of editing interfaces for boolean data in a datagrid.
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.BooleanSelectionMode.CheckBox">
+            <summary>
+            Allows editing the field with a simple <see cref="T:System.Web.UI.HtmlControls.HtmlInputCheckBox"/> control.
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.BooleanSelectionMode.DropDownList">
+            <summary>
+            Allows editing the field with a <see cref="F:MetaBuilders.WebControls.BooleanSelectionMode.DropDownList"/> control.
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.BooleanSelectionMode.RadioButtonList">
+            <summary>
+            Allows editing the field with a <see cref="F:MetaBuilders.WebControls.BooleanSelectionMode.RadioButtonList"/> control.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.BoundBooleanColumn">
+            <summary>
+            A column type for the DataGrid control that is bound to a boolean field in a data source.
+            </summary>
+            <remarks>
+            <para>
+            Use the <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/> column type in a <see cref="T:System.Web.UI.WebControls.DataGrid"/> control to display the contents of a boolean field in the data source in a single column.
+            </para>
+            </remarks>
+            <example>
+            This is an example aspx page showing the variety of ways to show boolean data.
+            <code>
+            <![CDATA[
+            <%@ Import Namespace="System.Data" %>
+            <%@ Register TagPrefix="mbbbc" Namespace="MetaBuilders.WebControls" Assembly="MetaBuilders.WebControls.BoundBooleanColumn" %>
+            
+            <html>
+               <script language="C#" runat="server">
+             
+                  ICollection CreateDataSource() 
+                  {
+                     DataTable dt = new DataTable();
+                     DataRow dr;
+             
+                     dt.Columns.Add(new DataColumn("BooleanValue", typeof(Boolean)));
+            		dr = dt.NewRow();
+            		dr[0] = true;
+            		dt.Rows.Add(dr);
+            		
+            		dr = dt.NewRow();
+            		dr[0] = false;
+            		dt.Rows.Add(dr);
+            		
+            		dr = dt.NewRow();
+            		dt.Rows.Add(dr);
+             
+                     DataView dv = new DataView(dt);
+                     return dv;
+                  }
+             
+                  void Page_Load(Object sender, EventArgs e) 
+                  {
+             
+                     if (!IsPostBack) 
+                     {
+                        // Load this data only once.
+                        ItemsGrid.DataSource= CreateDataSource();
+                        ItemsGrid.DataBind();
+                     }
+                  }
+                  
+            	void DataGrid_Cancel(object sender, DataGridCommandEventArgs e) {
+            
+                    // cancel editing
+                    ItemsGrid.EditItemIndex = -1;
+                    ItemsGrid.DataSource= CreateDataSource();
+                    ItemsGrid.DataBind();
+                }
+            
+                void DataGrid_Edit(object sender, DataGridCommandEventArgs e) {
+            
+                    // turn on editing for the selected row
+                    ItemsGrid.EditItemIndex = e.Item.ItemIndex;
+                    ItemsGrid.DataSource= CreateDataSource();
+                    ItemsGrid.DataBind();
+                }
+            
+             
+               </script>
+             
+            <body>
+             
+               <form runat=server>
+             
+                  <h3>DataGrid Example</h3>
+             
+                  <asp:DataGrid id="ItemsGrid"
+                       BorderColor="black"
+                       BorderWidth="1"
+                       CellPadding="3"
+                       AutoGenerateColumns="false"
+                       OnEditCommand="DataGrid_Edit" OnUpdateCommand="DataGrid_Cancel" OnCancelCommand="DataGrid_Cancel" 
+                       runat="server">
+            
+                     <HeaderStyle BackColor="darkblue" forecolor="white" >
+                     </HeaderStyle> 
+                     <Columns>
+            			<asp:EditCommandColumn ButtonType="LinkButton" UpdateText="Update" CancelText="Cancel" EditText="Edit" ItemStyle-Font-Size="smaller" ItemStyle-Width="10%"></asp:EditCommandColumn>
+            			<asp:BoundColumn DataField="BooleanValue" HeaderText="Standard BoundColumn" />
+            			<mbbbc:BoundBooleanColumn SelectionMode="CheckBox" DataField="BooleanValue" HeaderText="CheckBox Mode <br> null is false" AllowNull="false" NullDefault="false" DataNullString="" />
+            			<mbbbc:BoundBooleanColumn SelectionMode="DropDownList" DataField="BooleanValue" HeaderText="DropDownList Mode"/>
+            			<mbbbc:BoundBooleanColumn SelectionMode="RadioButtonList" DataField="BooleanValue" HeaderText="RadioButtonList Mode <br> with custom strings" DataTrueString="Yes" DataFalseString="No" DataNullString="NA"/>
+                     </Columns>
+             
+                  </asp:DataGrid>
+             
+               </form>
+             
+            </body>
+            </html>    /// ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundBooleanColumn.#ctor">
+            <summary>
+            Creates a new instances of the <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/> class.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundBooleanColumn.FindColumn(System.Web.UI.WebControls.DataGrid,System.String)">
+            <summary>
+            Finds the <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/> in the given <see cref="T:System.Web.UI.WebControls.DataGrid"/> which is bound to the given data field.
+            </summary>
+            <param name="grid">The <see cref="T:System.Web.UI.WebControls.DataGrid"/> to search.</param>
+            <param name="dataField">The column to search for.</param>
+            <returns>The <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/> found, or null.</returns>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundBooleanColumn.Initialize">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.WebControls.DataGridColumn.Initialize"/>.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundBooleanColumn.CreateEditorControl">
+            <summary>
+            Creates the control which provides the editing interface for the field.
+            </summary>
+            <returns>The created control.</returns>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundBooleanColumn.InitializeCell(System.Web.UI.WebControls.TableCell,System.Int32,System.Web.UI.WebControls.ListItemType)">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.WebControls.DataGridColumn.InitializeCell(System.Web.UI.WebControls.TableCell,System.Int32,System.Web.UI.WebControls.ListItemType)"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundBooleanColumn.BindFieldToCell(System.Web.UI.Control)">
+            <summary>
+            Binds the field value to the view or edit control.
+            </summary>
+            <param name="bindingContainer">The control which recieves the databinding.</param>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundBooleanColumn.GetUnderlyingValue(System.Object)">
+            <summary>
+            find the correct item in the list from the dataitem's value
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundBooleanColumn.FormatDataValue(System.Data.SqlTypes.SqlBoolean)">
+            <summary>
+            Formats the dataValue for display.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundBooleanColumn.SelectionMode">
+            <summary>
+            Gets or sets the method of editing the field.
+            </summary>
+            <value>One of the <see cref="T:MetaBuilders.WebControls.BooleanSelectionMode"/> values.</value>
+            <remarks>
+            The <see cref="F:MetaBuilders.WebControls.BooleanSelectionMode.CheckBox"/> setting does not support entering null data.
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundBooleanColumn.DataField">
+            <summary>
+            Gets or sets the field name from the data source to bind to the <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/>.
+            </summary>
+            <value>The name of the field to bind to the <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/>. The default value is <see cref="F:System.String.Empty"/>.</value>
+            <remarks>Use the DataField property to specify the field to bind to the <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/>.</remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundBooleanColumn.TrueString">
+            <summary>
+            Gets or sets the <see cref="T:System.String"/> shown for a True value in the data source.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundBooleanColumn.FalseString">
+            <summary>
+            Gets or sets the <see cref="T:System.String"/> shown for a False value in the data source.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundBooleanColumn.NullString">
+            <summary>
+            Gets or sets the <see cref="T:System.String"/> shown for a Null value in the data source.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundBooleanColumn.AllowNull">
+            <summary>
+            Gets or sets whether the edit controls include a null choice.
+            </summary>
+            <remarks>
+            This must be set to false when using the <see cref="F:MetaBuilders.WebControls.BooleanSelectionMode.CheckBox"/> value for the <see cref="P:MetaBuilders.WebControls.BoundBooleanColumn.SelectionMode"/> property.
+            When set to false, an exception will be thrown unless <see cref="P:MetaBuilders.WebControls.BoundBooleanColumn.NullDefault"/> is also set.
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundBooleanColumn.NullDefault">
+            <summary>
+            Gets or sets the default value of an edit control when <see cref="P:MetaBuilders.WebControls.BoundBooleanColumn.AllowNull"/> is set to false and the value is null.
+            </summary>
+            <remarks>
+            This field is required, and only neccesary when, <see cref="P:MetaBuilders.WebControls.BoundBooleanColumn.AllowNull"/> is set to false.
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundBooleanColumn.ReadOnly">
+            <summary>
+            Gets or sets a value that indicates whether the items in the <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/> can be edited.
+            </summary>
+            <value>true if the items in the <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/> can be edited; otherwise, false. The default value is false.</value>
+            <remarks>
+            Use the ReadOnly property to specify whether the items in the <see cref="T:MetaBuilders.WebControls.BoundBooleanColumn"/> can be edited.
+            This property can also be used to programmatically determine whether the column is read-only.
+            </remarks>
+        </member>
+        <member name="T:MetaBuilders.WebControls.InvalidPropertyCombinationException">
+            <summary>
+            The exception that is thrown when a combination of properties on an object aren't valid together.
+            </summary>
+            <remarks>
+            InvalidPropertyCombinationException is thrown when the state of an object's properties are invalid.
+            </remarks>
+        </member>
+        <member name="M:MetaBuilders.WebControls.InvalidPropertyCombinationException.#ctor">
+            <summary>
+            Initializes a standalone exception with the Message, "An invalid property combination exists."
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.InvalidPropertyCombinationException.#ctor(System.String)">
+            <summary>
+            Initializes a standalone exception with the given Message.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.InvalidPropertyCombinationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a standalone exception with the given Message and inner exception.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.InvalidPropertyCombinationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            deserialization constructor
+            </summary>
+        </member>
+    </members>
+</doc>

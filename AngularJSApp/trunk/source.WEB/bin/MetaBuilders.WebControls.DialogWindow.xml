@@ -1,0 +1,601 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MetaBuilders.WebControls.DialogWindow</name>
+    </assembly>
+    <members>
+        <member name="T:MetaBuilders.WebControls.DialogControlConverter">
+            <summary>
+            Gives better designer support for the DialogToOpen properties of DialogOpenButton and DialogOpenLink.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogControlConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Makes the converter a combobox
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogControlConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Makes the converter a combobox
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogControlConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Gets a list of all the controls that derive from DialogWindowBase.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogDesigner">
+            <summary>
+            The designer for DialogWindow controls.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogDesigner.GetDesignTimeHtml">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml"/>.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogHandlerFactory.EnsureHandlerFactory">
+            <summary>
+            Ensures that the IHttpHandlerFactory required for built in dialogs to function, is registered for this application.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogImageHandler">
+            <summary>
+            Responds to requests by outputting the messagebox icons embedded into the assembly as resources.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogImageHandler.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            Implements <see cref="M:System.Web.IHttpHandler.ProcessRequest(System.Web.HttpContext)"/>.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogImageHandler.IsReusable">
+            <summary>
+            Implements <see cref="P:System.Web.IHttpHandler.IsReusable"/>.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogInputBox">
+            <summary>
+            Provides an interface similar to the VB InputBox.
+            Call <see cref="M:MetaBuilders.WebControls.DialogWindowBase.Open"/> to display the inputbox dialog window, or point a <see cref="T:MetaBuilders.WebControls.DialogOpenButton"/> at it.
+            </summary>
+            <remarks>
+            <p>The DialogInputBox control requires a custom httpHandler setting in the application web.config file. To do this, add the following line to the httpHandlers section of your web.config file</p>
+            <code>
+            &lt;add verb="*" 
+            path="MetaBuilders_DialogWindow.axd" 
+            type="MetaBuilders.WebControls.DialogHandlerFactory,MetaBuilders.WebControls.DialogWindow" 
+            validate="false"/&gt;</code>
+            <p>
+            The DialogInputBox control requires javascript support in order to function.
+            </p>
+            </remarks>
+            <example>
+            The following example shows you how to use the <see cref="T:MetaBuilders.WebControls.DialogInputBox"/> on your page.
+            <code>
+            <![CDATA[
+            <%@ Register TagPrefix="mbdw" Namespace="MetaBuilders.WebControls" Assembly="MetaBuilders.WebControls.DialogWindow" %>
+            <script runat="server" language="c#" >
+            protected void MyDialogWindow_DialogClosed( Object sender, DialogResultEventArgs e ) {
+            	Entry.Text = e.Results;
+            }
+            </script>
+            <form runat="server">
+            	<asp:TextBox runat="server" Id="Entry" />
+            	<mbdw:DialogInputBox runat="server" Id="MyInputBox" 
+            		OnDialogClosed="MyDialogWindow_DialogClosed" 
+            		Prompt="Please Enter A Value." />
+            	<mbdw:DialogOpenButton runat="server" 
+            		DialogToOpen="MyInputBox" 
+            		Text="Open An Input Box" />
+            </form>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogWindowBase">
+            <summary>
+            Controls that represent a dialog window derive from this class.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindowBase.OnDialogClosed(MetaBuilders.WebControls.DialogResultEventArgs)">
+            <summary>
+            Raises the DialogClosed event.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindowBase.OnPreRender(System.EventArgs)">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindowBase.RegisterClientScript">
+            <summary>
+            Registers the neccessary clientscript for the dialog.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindowBase.GetDialogOpenScript(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Gets the script neccessary to open the dialog.
+            </summary>
+            <remarks>
+            <p>
+            When deriving from this class, you generally want to implement the publi GetDialogOpenScript by calling this method with the proper url and features.
+            </p>
+            </remarks>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindowBase.GetStandardFeatures">
+            <summary>
+            Creates and returns a NameValueCollection which has the standard features for a dialog window.
+            </summary>
+            <remarks>
+            This is meant for developers creating custom dialogs.
+            </remarks>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindowBase.GetDialogOpenScript">
+            <summary>
+            Generates the script neccessary to open the dialog.
+            </summary>
+            <remarks>
+            <p>Calling <see cref="M:MetaBuilders.WebControls.DialogWindowBase.Open"/> will cause this script to be sent to the client browser.</p>
+            <p>This method can also be used to open the dialog on the client without postingback.</p>
+            <p>This method is only public for developers who want to customize how and when the window is opened via code or a custom server control.</p>
+            </remarks>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindowBase.Open">
+            <summary>
+            Opens the dialog.
+            </summary>
+            <remarks>
+            The dialog window is opened via a script run on the client browser.
+            Attach to the <see cref="E:MetaBuilders.WebControls.DialogWindowBase.DialogClosed"/> event to get the results of the dialog.
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogWindowBase.Resizable">
+            <summary>
+            Gets or sets if the user can resize the window.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogWindowBase.DefaultResultValue">
+            <summary>
+            Gets or sets the result returned and used in the <see cref="E:MetaBuilders.WebControls.DialogWindowBase.DialogClosed"/> event when the dialog is closed via OS window methods such as clicking the "X" button, or by calling <see cref="M:MetaBuilders.WebControls.DialogPage.Close(System.String)"/> with no parameters.
+            </summary>
+        </member>
+        <member name="E:MetaBuilders.WebControls.DialogWindowBase.DialogClosed">
+            <summary>
+            The event that is raised when the user has closed the dialog and results have been returned.
+            </summary>
+            <remarks>
+            This event is not raised when no results are returned or the user closes the dialogwindow via the native window closing mechanisms.
+            
+            </remarks>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogInputBox.GetDialogOpenScript">
+            <summary>
+            Generates the script neccessary to open the current inputbox.
+            </summary>
+            <remarks>
+            <p>Calling <see cref="M:MetaBuilders.WebControls.DialogWindowBase.Open"/> will cause this script to be sent to the client browser.</p>
+            <p>This method can also be used to open the inputbox on the client without postingback.</p>
+            <p>This method is only public for developers who want to customize how and when the window is opened via code or a custom server control.</p>
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogInputBox.Prompt">
+            <summary>
+            Gets or sets the prompt text of the inputbox.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogInputBox.DefaultText">
+            <summary>
+            Gets or sets the text initially filled in the textbox.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogInputBox.Title">
+            <summary>
+            Gets or sets the title of the inputbox window.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogInputBoxPage">
+            <summary>
+            This is the page which provides the UI for the <see cref="T:MetaBuilders.WebControls.DialogInputBox"/>.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogPage">
+            <summary>
+            DialogPage is the base class for pages which are functioning as dialogs.
+            </summary>
+            <remarks>
+            When using the <see cref="T:MetaBuilders.WebControls.DialogWindow"/> control, 
+            the <see cref="P:MetaBuilders.WebControls.DialogWindow.TargetUrl"/> should point to a page which derives,
+            directly or indirectly, from <see cref="T:MetaBuilders.WebControls.DialogPage"/>.
+            </remarks>
+            <example>
+            The following example shows you a typical <see cref="T:MetaBuilders.WebControls.DialogPage"/>.
+            <code>
+            <![CDATA[
+            <%@ Page Language="C#" Inherits="MetaBuilders.WebControls.DialogPage"  %>
+            <script runat="server">
+            protected void Smack_Click(Object sender, EventArgs e ) {
+            	this.Close(Results.Text);
+            }
+            </script>
+            <html><body><form runat="server">
+            	<asp:TextBox runat="server" Id="Results" />
+            	<asp:Button runat="server" Id="Smack" Text="Smack" OnClick="Smack_Click" />
+            </form></body></html>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogPage.OnPreRender(System.EventArgs)">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogPage.RegisterScript">
+            <summary>
+            Registers the neccessary script for the dialog to function.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogPage.GetDialogCloseScript(System.String)">
+            <summary>
+            Gets the script required to close the dialog with the given results.
+            </summary>
+            <remarks>
+            Simply call <see cref="M:MetaBuilders.WebControls.DialogPage.Close(System.String)"/> to close the dialog from the server code.
+            Only call this method to get the script neccessary to close the dialog from a client script event handler.
+            </remarks>
+            <param name="results">The results which will be available in the <see cref="E:MetaBuilders.WebControls.DialogWindowBase.DialogClosed"/> event.</param>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogPage.GetDialogCloseScript">
+            <summary>
+            Gets the script required to close the dialog with default results.
+            </summary>
+            <remarks>
+            Simply call <see cref="M:MetaBuilders.WebControls.DialogPage.Close(System.String)"/> to close the dialog from the server code.
+            Only call this method to get the script neccessary to close the dialog from a client script event handler.
+            </remarks>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogPage.Close(System.String)">
+            <summary>
+            Closes the dialog, and returns the given results for the <see cref="E:MetaBuilders.WebControls.DialogWindowBase.DialogClosed"/> event.
+            </summary>
+            <param name="results">The results which will be available in the <see cref="E:MetaBuilders.WebControls.DialogWindowBase.DialogClosed"/> event.</param>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogPage.Close">
+            <summary>
+            Closes the dialog, and returns the default results.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogInputBoxPage.OnInit(System.EventArgs)">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.Control.OnInit(System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogInputBoxPage.InitializeComponent">
+            <summary>
+            Creates the page's control tree via code instead of parsing an aspx.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogMessageBox">
+            <summary>
+            Provides an interface similar to the Windows.Forms.MessageBox.
+            Call <see cref="M:MetaBuilders.WebControls.DialogWindowBase.Open"/> to display the MessageBox dialog window, or point a <see cref="T:MetaBuilders.WebControls.DialogOpenButton"/> at it.
+            </summary>
+            <remarks>
+            <p>The DialogMessageBox control requires a custom httpHandler setting in the application web.config file. To do this, add the following line to the httpHandlers section of your web.config file</p>
+            <code>
+            &lt;add verb="*" 
+            path="MetaBuilders_DialogWindow.axd" 
+            type="MetaBuilders.WebControls.DialogHandlerFactory,MetaBuilders.WebControls.DialogWindow" 
+            validate="false"/&gt;</code>
+            <p>
+            The DialogMessageBox control requires javascript support in order to function.
+            </p>
+            </remarks>
+            <example>
+            The following example shows you how to use the <see cref="T:MetaBuilders.WebControls.DialogMessageBox"/> on your page.
+            <code>
+            <![CDATA[
+            <%@ Register TagPrefix="mbdw" Namespace="MetaBuilders.WebControls" Assembly="MetaBuilders.WebControls.DialogWindow" %>
+            <script runat="server" language="c#" >
+            protected void MyDialogWindow_DialogClosed( Object sender, DialogResultEventArgs e ) {
+            	Entry.Text = e.Results;
+            }
+            </script>
+            <form runat="server">
+            	<asp:TextBox runat="server" Id="Entry" />
+            	<mbdw:DialogMessageBox runat="server" Id="MyMessageBox" 
+            		OnDialogClosed="MyDialogWindow_DialogClosed" 
+            		Prompt="What Is Your Answer?" />
+            	<mbdw:DialogOpenButton runat="server" 
+            		DialogToOpen="MyMessageBox" 
+            		Text="Open A MessageBox" />
+            </form>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogMessageBox.GetDialogOpenScript">
+            <summary>
+            Generates the script neccessary to open the current messagebox.
+            </summary>
+            <remarks>
+            <p>Calling <see cref="M:MetaBuilders.WebControls.DialogWindowBase.Open"/> will cause this script to be sent to the client browser.</p>
+            <p>This method can also be used to open the messagebox on the client without postingback.</p>
+            <p>This method is only public for developers who want to customize how and when the window is opened via code or a custom server control.</p>
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogMessageBox.Prompt">
+            <summary>
+            Gets or sets the main text of the messagebox.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogMessageBox.Title">
+            <summary>
+            Gets or sets the title of the messagebox window.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogMessageBox.Buttons">
+            <summary>
+            Gets or sets the buttons of the messagebox.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogMessageBox.Icon">
+            <summary>
+            Gets or sets the buttons of the messagebox.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogMessageBoxButtons">
+            <summary>
+            Button configurations used by the <see cref="T:MetaBuilders.WebControls.DialogMessageBox"/> control.
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxButtons.OK">
+            <summary>
+            Displays an OK button
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxButtons.OKCancel">
+            <summary>
+            Displays OK and Cancel buttons
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxButtons.RetryCancel">
+            <summary>
+            Displays Retry and Cancel buttons
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxButtons.YesNo">
+            <summary>
+            Displays Yes and No buttons
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxButtons.YesNoCancel">
+            <summary>
+            Displays Yes, No, and Cancel buttons
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogMessageBoxIcon">
+            <summary>
+            Icons that can be displayed in a <see cref="T:MetaBuilders.WebControls.DialogMessageBox"/>.
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxIcon.None">
+            <summary>
+            No icon is displayed.
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxIcon.Exclamation">
+            <summary>
+            An excalmation point in yellow triangle.
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxIcon.Information">
+            <summary>
+            A lowercase "i" in a bubble.
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxIcon.Question">
+            <summary>
+            A question mark in a bubble.
+            </summary>
+        </member>
+        <member name="F:MetaBuilders.WebControls.DialogMessageBoxIcon.Stop">
+            <summary>
+            A white "X" in a red circle.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogMessageBoxPage">
+            <summary>
+            This is the page which provides the UI for the <see cref="T:MetaBuilders.WebControls.DialogMessageBox"/>.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogMessageBoxPage.OnInit(System.EventArgs)">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.Control.OnInit(System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogMessageBoxPage.InitializeComponent">
+            <summary>
+            Creates the page's control tree via code instead of parsing an aspx.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogOpenButton">
+            <summary>
+            Opens the specified dialog without a postback to call <see cref="M:MetaBuilders.WebControls.DialogWindowBase.Open"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogOpenButton.AddAttributesToRender(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.WebControls.WebControl.AddAttributesToRender(System.Web.UI.HtmlTextWriter)"/>
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogOpenButton.TagKey">
+            <summary>
+            Overrides <see cref="P:System.Web.UI.WebControls.WebControl.TagKey"/>.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogOpenButton.DialogToOpen">
+            <summary>
+            Gets or sets the ID of the <see cref="T:MetaBuilders.WebControls.DialogWindowBase"/> to open.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogOpenButton.Text">
+            <summary>
+            Gets or sets the Text of the button.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogOpenLink">
+            <summary>
+            Opens the specified dialog without a postback to call <see cref="M:MetaBuilders.WebControls.DialogWindowBase.Open"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogOpenLink.RenderChildren(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.Control.RenderChildren(System.Web.UI.HtmlTextWriter)"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogOpenLink.AddAttributesToRender(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.WebControls.WebControl.AddAttributesToRender(System.Web.UI.HtmlTextWriter)"/>
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogOpenLink.TagKey">
+            <summary>
+            Overrides <see cref="P:System.Web.UI.WebControls.WebControl.TagKey"/>.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogOpenLink.DialogToOpen">
+            <summary>
+            Gets or sets the ID of the <see cref="T:MetaBuilders.WebControls.DialogWindowBase"/> to open.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogOpenLink.Text">
+            <summary>
+            Gets or sets the Text of the link.
+            </summary>
+            <remarks>
+            If both <see cref="P:MetaBuilders.WebControls.DialogOpenLink.ImageUrl"/> and <see cref="P:MetaBuilders.WebControls.DialogOpenLink.Text"/> are set,
+            the <see cref="P:MetaBuilders.WebControls.DialogOpenLink.Text"/> value will be used as the alternate text of the image.
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogOpenLink.ImageUrl">
+            <summary>
+            Gets or sets the url of an image to display for the link.
+            </summary>
+            <remarks>
+            If both <see cref="P:MetaBuilders.WebControls.DialogOpenLink.ImageUrl"/> and <see cref="P:MetaBuilders.WebControls.DialogOpenLink.Text"/> are set,
+            the <see cref="P:MetaBuilders.WebControls.DialogOpenLink.Text"/> value will be used as the alternate text of the image.
+            </remarks>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogResultEventHandler">
+            <summary>
+            The signature for a method handling the <see cref="E:MetaBuilders.WebControls.DialogWindowBase.DialogClosed"/> event.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogResultEventArgs">
+            <summary>
+            The <see cref="T:System.EventArgs"/> for the <see cref="E:MetaBuilders.WebControls.DialogWindowBase.DialogClosed"/> event.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogResultEventArgs.#ctor(System.String)">
+            <summary>
+            Instnatiates a <see cref="T:MetaBuilders.WebControls.DialogResultEventArgs"/> with the given results.
+            </summary>
+            <param name="results"></param>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogResultEventArgs.Results">
+            <summary>
+            Gets the results for the event.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.DialogWindow">
+            <summary>
+            Provides a dialog that shows a custom <see cref="T:MetaBuilders.WebControls.DialogPage"/>.
+            Call <see cref="M:MetaBuilders.WebControls.DialogWindowBase.Open"/> to display the dialog window, or point a <see cref="T:MetaBuilders.WebControls.DialogOpenButton"/> at it.
+            </summary>
+            <remarks>
+            <p>
+            The DialogWindow control requires javascript support in order to function.
+            </p>
+            </remarks>
+            <example>
+            The following example shows you how to use the <see cref="T:MetaBuilders.WebControls.DialogWindow"/> on your page.
+            <code>
+            <![CDATA[
+            <%@ Register TagPrefix="mbdw" Namespace="MetaBuilders.WebControls" Assembly="MetaBuilders.WebControls.DialogWindow" %>
+            <script runat="server" language="c#" >
+            protected void MyDialogWindow_DialogClosed( Object sender, DialogResultEventArgs e ) {
+            	Entry.Text = e.Results;
+            }
+            </script>
+            <form runat="server">
+            	<asp:TextBox runat="server" Id="Entry" />
+            	<mbdw:DialogWindow runat="server" Id="MyDialog" 
+            		OnDialogClosed="MyDialog_DialogClosed" 
+            		Resizable="True"
+            		TargetUrl="DialogPage.aspx"
+            		WindowHeight="150"
+            		WindowWidth="400" 
+            	/>
+            	<mbdw:DialogOpenButton runat="server" 
+            		DialogToOpen="MyDialog" 
+            		Text="Open A Custom Dialog Window" 
+            	/>
+            </form>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindow.SaveViewState">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.Control.SaveViewState"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindow.LoadViewState(System.Object)">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.Control.LoadViewState(System.Object)"/>
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.DialogWindow.GetDialogOpenScript">
+            <summary>
+            Generates the script neccessary to open the dialog.
+            </summary>
+            <remarks>
+            <p>Calling <see cref="M:MetaBuilders.WebControls.DialogWindowBase.Open"/> will cause this script to be sent to the client browser.</p>
+            <p>This method can also be used to open the dialog on the client without postingback.</p>
+            <p>This method is only public for developers who want to customize how and when the window is opened via code or a custom server control.</p>
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogWindow.TargetUrl">
+            <summary>
+            Gets or sets the url for the <see cref="T:MetaBuilders.WebControls.DialogPage"/> serving as the UI of the dialog.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogWindow.WindowHeight">
+            <summary>
+            Gets or sets the height of the dialog window.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogWindow.WindowWidth">
+            <summary>
+            Gets or sets the width of the dialog window.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.DialogWindow.DialogArguments">
+            <summary>
+            Gets a collection of name/value pairs that are added to the querystring of the <see cref="P:MetaBuilders.WebControls.DialogWindow.TargetUrl"/>.
+            </summary>
+        </member>
+        <member name="T:MetaBuilders.WebControls.OpenerDesigner">
+            <summary>
+            The designer for the dialog opener controls.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.OpenerDesigner.GetDesignTimeHtml">
+            <summary>
+            Overrides <see cref="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

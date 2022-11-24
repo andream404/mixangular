@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PageControl xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="IdeaPortal2.XMLBuilder.PageControl" xsi:schemaLocation="D:\Programmazione\ideatech\IdeaPortal2\XMLBuilder\PageControl.xsd">
+    <Name xmlns="">Stringhe</Name>
+    <Title xmlns="">Stringhe</Title>
+	<PageMenus xmlns="">
+	    <PageMenu>
+            <Name>HeaderMain</Name>
+        </PageMenu>
+    </PageMenus>
+
+    <Blocks xmlns="" />
+	<SubComponent xmlns="">
+        <IPGrid xmlns="">
+	        <Name xmlns="">GStringhe</Name>
+	        <DataSet>
+		        <SelectSQL>
+				
+					SELECT 
+						IDSTRING, 
+						LABEL, 
+						REFERENCE
+					FROM V_IDSTRINGS
+				
+                </SelectSQL>
+                <DeleteSQL></DeleteSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <UpdateSQL></UpdateSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <InsertSQL></InsertSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <PrimaryKey>IDSTRING</PrimaryKey>
+                <Generator>GEN_CORE$IDSTRINGS_ID</Generator>
+                <UpdateTable>V_IDSTRINGS</UpdateTable>
+                <CanInsert>true</CanInsert>
+                <CanDelete>false</CanDelete>
+                <CanEdit>true</CanEdit>
+				<DefaultSort>IDSTRING DESC</DefaultSort>
+	        </DataSet>
+            <ViewStyleName>Default</ViewStyleName>
+	        <DataColumns>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>IDSTRING</FieldName>
+                    <Visible>false</Visible>
+                    <OrderBy>idstring</OrderBy>
+                    <HeaderText>idstring</HeaderText>
+                </Column>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <Visible>true</Visible>
+                    <FieldName>LABEL</FieldName>
+                    <OrderBy>label</OrderBy>
+                    <HeaderText>label</HeaderText>
+                    <Width>180</Width>
+                </Column>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>REFERENCE</FieldName>
+                    <Visible>true</Visible>
+                    <HeaderText>reference</HeaderText>
+                    <Width>270</Width>
+                    <OrderBy>reference</OrderBy>
+                </Column>
+	        </DataColumns>
+	    </IPGrid>
+    </SubComponent>
+</PageControl>

@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MetaBuilders.WebControls.BoundLookupColumn</name>
+    </assembly>
+    <members>
+        <member name="T:MetaBuilders.WebControls.BoundLookupColumn">
+            <summary>
+            A column type for the <see cref="T:System.Web.UI.WebControls.DataGrid"/> control that is bound to a field in a data source and restricts the values to records from another source.
+            </summary>
+            <remarks>
+            <p>
+            Use the BoundLookupColumn column type in a DataGrid control to display the contents of a field in the data source in a single column.
+            The field is linked to the BoundLookupColumn,
+            so any updates in the data source are reflected in the corresponding cells of the DataGrid control.
+            </p>
+            <p>
+            This column type does not correspond with a template.
+            Use the style properties of the DataGrid control to manage the appearance of the column.
+            </p>
+            </remarks>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundLookupColumn.#ctor">
+            <summary>
+            Creates a new instance of the BoundLookupColumn control.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundLookupColumn.LoadViewState(System.Object)">
+            <summary>
+            This member overrides <see cref="M:System.Web.UI.WebControls.DataGridColumn.LoadViewState(System.Object)"/>.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundLookupColumn.SaveViewState">
+            <summary>
+            This member overrides <see cref="M:System.Web.UI.WebControls.DataGridColumn.SaveViewState"/>.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundLookupColumn.Initialize">
+            <summary>
+            Resets the BoundLookupColumn to its initial state.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundLookupColumn.InitializeCell(System.Web.UI.WebControls.TableCell,System.Int32,System.Web.UI.WebControls.ListItemType)">
+            <summary>
+            This member overrides <see cref="M:System.Web.UI.WebControls.DataGridColumn.InitializeCell(System.Web.UI.WebControls.TableCell,System.Int32,System.Web.UI.WebControls.ListItemType)"/>.
+            </summary>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundLookupColumn.BindList">
+            <summary>
+            Binds the internal ListItemCollection to the column datasource.
+            </summary>
+            <remarks>
+            Note that this does not attach any ListItems to any DDL's.
+            It only adds the ListItems to a seperate, internal ListItemCollection.
+            </remarks>
+        </member>
+        <member name="M:MetaBuilders.WebControls.BoundLookupColumn.BindFieldToCell(System.Web.UI.Control)">
+            <summary>
+            Handles the DataBinding call on the parent TableCell or DDL to show the data.
+            </summary>
+            <param name="bindingContainer">The TableCell or DDL being data bound.</param>
+        </member>
+        <member name="F:MetaBuilders.WebControls.BoundLookupColumn.thisExpr">
+            <summary>
+            Represents the string "!". This field is read-only.
+            </summary>
+            <remarks>Use the thisExpr field to represent the "!" string.</remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.LookupDataSource">
+            <summary>
+            The data source for the selection list when the cell is in edit mode.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.LookupDataMember">
+            <summary>
+            The data source member for the selection list when the cell is in edit mode.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.LookupDataValueField">
+            <summary>
+            The field of the data source to be used as the value for the selection list when the cell is in edit mode.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.LookupDataTextField">
+            <summary>
+            The field of the data source to be used as the visible text for the selection list when the cell is in edit mode.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.LookupDataFormatString">
+            <summary>
+            Gets or sets the string that specifies the display format for items in the column.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.LookupList">
+            <summary>
+            The internal ListItemCollection for the column.
+            </summary>
+            <remarks>
+            This is the actual ListItemCollecton saved in ViewState.
+            The ListItemCollection used in the DDL when in edit mode is a deep copy of this one.
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.ListIsDataBound">
+            <summary>
+            Gets or sets the databound status of LookupList.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.DataField">
+            <summary>
+            Gets or sets the field in the DataSource to which this column is bound.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.ReadOnly">
+            <summary>
+            Gets or sets a value that indicates whether the items in the BoundColumn can be edited.
+            </summary>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.AllowNulls">
+            <summary>
+            Gets or sets a value that indicates whether the items in the BoundColumn includes a null choice.
+            </summary>
+            <remarks>
+            When set to true, a ListItem with String.Empty as the value will be added as the first choice in the list.
+            The display value of the ListItem is set with NullDisplayValue, which defaults to String.Empty.
+            If you require a more custom handling of nulls, set AllowNulls to false, and modify the LookupDataSource prior to DataBinding the grid.
+            </remarks>
+        </member>
+        <member name="P:MetaBuilders.WebControls.BoundLookupColumn.NullDisplayValue">
+            <summary>
+            Gets or sets the display of the null choice when AllowNulls is set to true.
+            </summary>
+        </member>
+    </members>
+</doc>

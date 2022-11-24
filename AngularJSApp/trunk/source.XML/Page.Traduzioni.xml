@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PageControl xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="IdeaPortal2.XMLBuilder.PageControl" xsi:schemaLocation="D:\Programmazione\ideatech\IdeaPortal2\XMLBuilder\PageControl.xsd">
+    <Name xmlns="">Traduzioni</Name>
+    <Title xmlns="">Traduzioni</Title>
+	<PageMenus xmlns="">
+	    <PageMenu>
+            <Name>HeaderMain</Name>
+        </PageMenu>
+    </PageMenus>
+
+    <Blocks xmlns="" />
+	<SubComponent xmlns="">
+        <IPGrid xmlns="">
+	        <Name xmlns="">GTraduzioni</Name>
+	        <DataSet>
+		        <SelectSQL>SELECT 
+                            IDTRANSLATION,
+                            IDSTRING,
+                            IDLANGUAGE,
+                            STRINGVALUE
+                        FROM V_TRANSLATIONS
+                </SelectSQL>
+                <DeleteSQL></DeleteSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <UpdateSQL></UpdateSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <InsertSQL></InsertSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <PrimaryKey>IDTRANSLATION</PrimaryKey>
+                <Generator>GEN_CORE$TRANSLATIONS_ID</Generator>
+                <UpdateTable>V_TRANSLATIONS</UpdateTable>
+                <CanInsert>true</CanInsert>
+                <CanDelete>true</CanDelete>
+                <CanEdit>true</CanEdit>
+				<DefaultSort>IDLANGUAGE DESC, STRINGVALUE DESC</DefaultSort>
+	        </DataSet>
+            <ViewStyleName>Default</ViewStyleName>
+	        <DataColumns>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>IDTRANSLATION</FieldName>
+                    <Visible>false</Visible>
+                    <OrderBy>idtranslation</OrderBy>
+                    <HeaderText>idtranslation</HeaderText>
+                </Column>
+                <Column>
+                    <ColumnType>Lookup</ColumnType>
+                    <Text></Text>
+                    <FieldName>IDSTRING</FieldName>
+                    <Visible>true</Visible>
+                    <OrderBy>idstring</OrderBy>
+                    <HeaderText>idstring</HeaderText>
+                    <FooterText></FooterText>
+                    <Width>180</Width>
+                    <Lookup>
+						<LookupName>Idstrings</LookupName>
+					</Lookup>
+                    <Filter>					
+						<FieldName>IDSTRING</FieldName>
+						<Mode>EqualTo</Mode>
+						<ControlType>Lookup</ControlType>
+						<Lookup>
+							<LookupName>Idstrings</LookupName>
+						</Lookup>
+					</Filter>
+                </Column>
+
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>STRINGVALUE</FieldName>
+                    <Visible>true</Visible>
+                    <OrderBy>stringvalue</OrderBy>
+                    <HeaderText>stringvalue</HeaderText>
+                    <FooterText></FooterText>
+                    <Width>720</Width>
+                    <Filter>					
+                        <Mode>ContainingWords</Mode>
+                    </Filter>
+                </Column>
+
+                <Column>
+                    <ColumnType>Lookup</ColumnType>
+                    <Text></Text>
+                    <FieldName>IDLANGUAGE</FieldName>
+                    <Visible>true</Visible>
+                    <OrderBy>idlanguage</OrderBy>
+                    <HeaderText>idlanguage</HeaderText>
+                    <FooterText></FooterText>
+                    <Width>180</Width>
+                    <Lookup>
+						<LookupName>Languages</LookupName>
+					</Lookup>
+                    <Filter>					
+						<FieldName>idlanguage</FieldName>
+						<Mode>EqualTo</Mode>
+						<ControlType>Lookup</ControlType>
+						<Lookup>
+							<LookupName>Languages</LookupName>
+						</Lookup>
+					</Filter>
+                </Column>
+
+	        </DataColumns>
+	    </IPGrid>
+    </SubComponent>
+</PageControl>

@@ -1,0 +1,8 @@
+<ul class="mentio-menu-scrollable">
+    <li mentio-menu-item="item" ng-repeat="item in items track by $index" ng-class="{'mentio-no-event': item.key<=0 }">
+        <div class="mentio-row" >
+            <div style="font-size:14px" ng-bind-html="item.value | mentioHighlight:typedTerm:'mentio-menu-highlighted' | unsafe"></div>
+            <small ng-bind-html="item.description | mentioHighlight:typedTerm:'mentio-menu-highlighted' | unsafe"></small>
+        </div>
+    </li>
+</ul>

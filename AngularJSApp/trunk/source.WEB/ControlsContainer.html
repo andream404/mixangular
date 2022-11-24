@@ -1,0 +1,117 @@
+﻿<div id='PageLoaderElement' class='LoadingControl'>
+    <div class='progress'>
+        <div class='progress-bar-indeterminate progress-bar-complete'></div>
+    </div>
+</div>
+<div class='modal fade disable-scroll' id='OkCancelPopup' tabindex='-1' role='dialog' aria-hidden='false'>
+    <div class='modal-dialog '>
+        <div class='modal-content-wrapper'>
+            <div class='modal-content'>
+                <div class='modal-header clearfix text-left'>
+                    <h5><span id='OkCancelPopupTitle' class='semi-bold'></span></h5>
+                    <p id='OkCancelPopupMessage' class='p-b-12'></p>
+                </div>
+                <div class='modal-body'>
+                    <div class='row'>
+                        <div class='col-md-6 m-t-10 sm-m-t-10'>
+                            <button id='OkCancelPopupOk' type='button' class='btn btn-complete btn-block m-t-5' ng-click='OkCancelPopupFactory.ButtonOkClick()'></button>
+                        </div>
+                        <div class='col-md-6 m-t-10 sm-m-t-10'>
+                            <button id='OkCancelPopupCancel' type='button' class='btn btn-complete btn-block m-t-5' ng-click='OkCancelPopupFactory.ButtonCancelClick()'></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='modal fade disable-scroll' id='KamMultiPagePopup' tabindex='-1' role='dialog' aria-hidden='false'>
+    <div class='modal-dialog '>
+        <div class='modal-content-wrapper'>
+            <div class='modal-content'>
+                <div class='modal-header clearfix text-left'>
+                    <h5><span id='KamMultiPagePopupTitle' class='semi-bold kam4-exception-popuptitle kam4-exception-multipage-popuptitle'></span></h5>
+                </div>
+                <div class='modal-body'>
+                    <div class='row'>
+                        <div class='col-md-12 m-t-10 sm-m-t-10'>
+                            <button id='KamMultiPagePopupRefresh' type='button' class='btn btn-complete btn-block m-t-5' ng-click='KamMultiPagePopupFactory.ButtonRefreshClick()'></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='modal fade disable-scroll' id='UpdateConflictPopup' tabindex='-1' role='dialog' aria-hidden='false'>
+    <div class='modal-dialog '>
+        <div class='modal-content-wrapper'>
+            <div class='modal-content'>
+                <div class='modal-header clearfix text-left'>
+                    <h5><span id='UpdateConflictPopupTitle' class='semi-bold kam4-exception-popuptitle kam4-exception-updateconflict-popuptitle'></span></h5>
+                </div>
+                <div class='modal-body'>
+                    <div class='row'>
+                        <div class='col-md-12 m-t-10 sm-m-t-10'>
+                            <button id='UpdateConflictPopupRefresh' type='button' class='btn btn-complete btn-block m-t-5' ng-click='UpdateConflictPopupFactory.ButtonRefreshClick()'></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='modal fade disable-scroll' id='CommandPopup' tabindex='-1' role='dialog' aria-hidden='false'>
+    <div class='modal-dialog '>
+        <div class='modal-content-wrapper'>
+            <div class='modal-content'>
+                <div class='modal-header clearfix text-left'>
+                    <h5><span id='CommandPopupTitle' class='semi-bold'></span></h5>
+                    <button id='CloseCommandPopup' type='button' class='close' aria-label='Close'>
+                        <span aria-hidden='true'>x</span>
+                    </button>
+                    <p id='CommandPopupMessage' class='p-b-12'></p>
+                </div>
+                <div class='modal-body'>
+                    <div class='row' id='CommandPopupButtonsRow'>
+                        <!-- populated by commandPopupFactory -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='header'>
+    <div class='header-inner justify-content-start header-lg-height title-bar'>
+        <div id='headerLogo'>
+        </div>
+        <div id='headerGlobalCustomControlContainer' ng-include = '"CustomControls/GlobalCustomControl.html?version=ebd7ac43-b02a-4a6d-8050-8567c9aa4754"'>
+            </div>
+    </div>
+    <div id='TopMenusContainer'  class = 'TopMenusContainerClass'>
+        <div id='TopMenusRepeater' class = 'TopMenusItemClass' ng-repeat = 'menuItem in menu.menuList | filter: { position: "top" } | orderBy:contextLevel'>
+            <kam4menu kam4menu-Name='menuItem.name'/>
+        </div>
+    </div>
+</div>
+<div  class = 'page-container'>
+    <div class = 'page-content-wrapper'>
+        <div class = 'full-height no-padding content '>
+            <div id='LeftMenusContainer' class = 'secondary-sidebar-container LeftMenusContainerClass'>
+                <div id='LeftMenusRepeater' class = 'LeftMenuItemClass' ng-repeat = 'menuItem in menu.menuList | filter: { position: "left" } | orderBy:contextLevel'>
+                    <kam4menu kam4menu-Name='menuItem.name'/>
+                </div>
+            </div>
+            <div id='MainContentContainer' class = 'full-height overflow-hidden'>
+                <div id='MainContentView' class = 'MainContentViewClass'>
+                    <div id='MainContentMenusContainer' class = 'MainContentMenusContainerClass'>
+                        <div id='MainContentMenusRepeater' class = 'MainContentMenuItemClass' ng-repeat = 'menuItem in menu.menuList | filter: { position: "maincontent" } | orderBy:contextLevel'>
+                            <kam4menu kam4menu-Name='menuItem.name'/>
+                        </div>
+                    </div>
+                    <div ng-view/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

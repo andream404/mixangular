@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LocalInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="IdeaPortal2.XMLBuilder.LocalInfo">
+	<Builder>
+		<TargetPath>C:\Programmazione\mixangular\\AngularJSApp\trunk\source.WEB</TargetPath>
+	</Builder>
+	<Application>
+		<Config>
+			<DesignConnectionString>User = SYSDBA; Password = masterkey; Database=C:\Programmazione\mixangular\\AngularJSApp\DB\\AngularJSApp.FDB; DataSource = localhost; Port = 3053; Dialect = 3; Charset = WIN1252; Connection lifetime = 15; Pooling = false; MinPoolSize = 0; MaxPoolSize = 50; Packet Size = 8192; ServerType = 0;</DesignConnectionString>
+			<ReferenceAssembliesPath>C:\Programmazione\IdeaTech\Kamaleont\V4\\Bin\</ReferenceAssembliesPath>
+		</Config>
+		<AspNetOptions>
+			<Precompile>
+				<Enabled>false</Enabled>
+			</Precompile>
+		</AspNetOptions>
+	</Application>
+</LocalInfo>
+

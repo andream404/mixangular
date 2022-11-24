@@ -1,0 +1,134 @@
+{
+    "version": "2.0.0",
+    "tasks": 
+    [
+        //-------------------------------------------------------------------//
+
+        /* Esegue build del file di progetto o di soluzione corrente aperto in editor */
+        {
+            "label": "Build open sln or csproj",
+            "type": "shell",
+            "command": "dotnet build ${file}",
+            "group": {
+                "kind": "build"
+            }
+        },
+
+
+        /* Esegue build di un progetto di una soluzione impostata come default 
+        *  Essendo targato come default build, il task è eseguibile anche tramite shortcut Ctrl+Shift+B
+        *
+        * >> Vedi input "defaultBuildSolution" per dettagli               
+        */
+        {
+            "label": "Build (default)",
+            "type": "shell",
+            "command": "dotnet build ${workspaceFolder}\\${input:defaultBuildSolution}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+
+        //-------------------------------------------------------------------//
+
+        /* Esegue clean del file di progetto o di soluzione corrente aperto in editor */
+        {
+            "label": "Clean open sln or csproj",
+            "type": "shell",
+            "command": "dotnet clean ${file}",
+        },
+
+
+        /* Esegue build di un progetto di una soluzione impostata come default
+        *
+        * >> Vedi input "defaultBuildSolution" per dettagli
+        *
+        * N.B.: Il progetto o la soluzione di default è la stessa impostata per il task "Build (default)"              
+        */
+        {
+            "label": "Clean (default)",
+            "type": "shell",
+            "command": "dotnet clean ${workspaceFolder}\\${input:defaultBuildSolution}",
+        },
+        
+        //-------------------------------------------------------------------//
+
+        /* Esegue restore del file di progetto o di soluzione corrente aperto in editor */
+        {
+            "label": "Restore open sln or csproj",
+            "type": "shell",
+            "command": "dotnet restore ${file}",
+        },
+
+
+        /* Esegue restore di un progetto di una soluzione impostata come default
+        *
+        * >> Vedi input "defaultBuildSolution" per dettagli
+        *
+        * N.B.: Il progetto o la soluzione di default è la stessa impostata per il task "Build (default)"              
+        */
+        {
+            "label": "Restore (default)",
+            "type": "shell",
+            "command": "dotnet restore ${workspaceFolder}\\${input:defaultBuildSolution}",
+        },
+        
+        //-------------------------------------------------------------------//
+
+        /* Aggiugne al file CSPROJ corrente aperto in editor una reference ad un secondo file
+            di progetto scelto attraverso selezione tramite file picker        
+
+        * >> Vedi input "inputCSPROJFileChooser" per dettagli
+        */
+        {
+            "label": "Add Project Reference",
+            "type": "shell",
+            "command": "dotnet add ${file} reference ${input:CSPROJFileChooser}"
+        },
+
+        //-------------------------------------------------------------------//
+    ],
+
+    "inputs": 
+    [
+        //-------------------------------------------------------------------//
+
+        /* Nome della soluzione o del progetto utilizzato per il comando build di default
+        *
+        * Utilizzato da:
+            . "Build (default)"
+            . "Clean (default)"
+        *
+        * >> Vedi file settings.json (Chiave KAMSettings.Solutions.defaultBuildSolution)           
+        */
+        {
+            "id": "defaultBuildSolution",
+            "type": "command",
+            "command": "extension.commandvariable.config.expression",
+            "args": {
+                "configVariable": "KAMSettings.Solutions.defaultBuildSolution",
+                "expression": "content"
+            }
+        },
+
+        //-------------------------------------------------------------------//
+
+        /* Apre un filepicker per la scelta di file .csproj
+        *
+        * Utilizzato da:
+            . "Add Project Reference"        
+        */
+        {
+            "id": "CSPROJFileChooser",
+            "type": "command",
+            "command": "shellCommand.execute",
+            "args": 
+            {
+                "command": "${workspaceFolder}\\.vscode\\projectFileChooser.bat"
+            }
+        },
+
+        //-------------------------------------------------------------------//
+    ]
+}

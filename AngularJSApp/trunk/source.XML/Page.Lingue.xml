@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PageControl xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="IdeaPortal2.XMLBuilder.PageControl" xsi:schemaLocation="D:\Programmazione\ideatech\IdeaPortal2\XMLBuilder\PageControl.xsd">
+    <Name xmlns="">Lingue</Name>
+    <Title xmlns="">Lingue</Title>
+    <PageMenus xmlns="">
+        <PageMenu>
+            <Name>HeaderMain</Name>
+        </PageMenu>
+    </PageMenus>
+
+    <Blocks xmlns="" />
+    <SubComponent xmlns="">
+        <IPGrid xmlns="">
+            <Name xmlns="">GLingue</Name>
+            <DataSet>
+                <SelectSQL>SELECT IDLANGUAGE,
+                                LANGUAGESHORTNAMESPACE,
+                                DESCRIPTION,
+                                ICON
+                            FROM V_LANGUAGES
+                </SelectSQL>
+                <DeleteSQL></DeleteSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <UpdateSQL></UpdateSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <InsertSQL></InsertSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <PrimaryKey>IDLANGUAGE</PrimaryKey>
+                <Generator>GEN_CORE$LANGUAGES_ID</Generator>
+                <UpdateTable>V_LANGUAGES</UpdateTable>
+                <CanInsert>true</CanInsert>
+                <CanDelete>false</CanDelete>
+                <CanEdit>true</CanEdit>
+                <DefaultSort>IDLANGUAGE DESC</DefaultSort>
+            </DataSet>
+            <ViewStyleName>Default</ViewStyleName>
+            <DataColumns>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>IDLANGUAGE</FieldName>
+                    <Visible>false</Visible>
+                    <OrderBy>idlanguage</OrderBy>
+                    <HeaderText>idlanguage</HeaderText>
+                </Column>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <Visible>true</Visible>
+                    <FieldName>LANGUAGESHORTNAMESPACE</FieldName>
+                    <OrderBy>languageshortnamespace</OrderBy>
+                    <HeaderText>languageshortnamespace</HeaderText>
+                    <Width>180</Width>
+                </Column>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>DESCRIPTION</FieldName>
+                    <Visible>true</Visible>
+                    <HeaderText>description</HeaderText>
+                    <Width>270</Width>
+                    <OrderBy>description</OrderBy>
+                </Column>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>ICON</FieldName>
+                    <Visible>true</Visible>
+                    <OrderBy>icon</OrderBy>
+                    <HeaderText>icon</HeaderText>
+                    <Width>180</Width>
+                </Column>
+            </DataColumns>
+        </IPGrid>
+    </SubComponent>
+</PageControl>

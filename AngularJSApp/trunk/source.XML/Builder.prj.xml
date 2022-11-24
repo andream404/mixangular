@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Definizione applicazione.
+Si vuole definire:
+
+login
+Elenco delle pagine appartenenti all'applicazione
+Sicurezza di accesso alle pagine
+
+-->
+<Builder xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="IdeaPortal2.XMLBuilder.Builder" xsi:schemaLocation="IdeaPortal2.XMLBuilder.Builder D:\Programmazione\ideatech\IdeaPortal2\XMLBuilder\Builder.xsd">
+	<ApplicationFileName>Application.xml</ApplicationFileName>
+	<PlatForm>WEB</PlatForm> <!-- MONO / ASP.NET -->
+	<BuilderVersion>10</BuilderVersion>	
+	<BuildProject>1</BuildProject>
+	<BuildType>FullApplication</BuildType>
+    <DBPlatform>FireBird</DBPlatform>	
+	<BuilderClasses >
+	</BuilderClasses>	
+	<!-- Filtri sui nomi di pagina. Un matching esatto ( o parziale ) ha valore maggiore di uno con caratteri jolly. Esclusioni vincono a pari peso
+		*=qualunque sequenza
+		?= un carattere
+
+		esempi:
+		*: peso 0
+		?: peso 1
+		??: peso 2... pari a N di ?
+		abc: matching esatto: peso 10 per lettera:30
+		abc?: matching con pattern: peso 5 per lettera
+		abc?: peso 16
+		abc??: peso 17
+		abc*: peso 15
+
+	<Filter>BasePag</Filter>
+	<Filter>Test?</Filter>
+	<Filter>prova*</Filter>
+
+   -->
+<!--     <Modules>
+	   <DefaultOutputPath>Business</DefaultOutputPath>
+
+	   <Module>
+	     <ClassName>XMLTest</ClassName>
+		 <OutputPath>Business\\XMLTest</OutputPath>
+		 <ConfigFileName>Module.XMLTest.xml</ConfigFileName>
+	   </Module>	   
+	 </Modules>-->
+	<BuildPages>
+		<Filter>*</Filter>
+	</BuildPages>
+	<ExcludePages>
+		<Filter>?</Filter>
+	</ExcludePages>
+</Builder>

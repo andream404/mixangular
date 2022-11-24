@@ -1,0 +1,63 @@
+﻿<div id='MenuHeaderMainMenuContainer' 
+ng-init = 'Init()'
+class = 'MenuHeaderMainClass'
+ng-class = '{"HorizontalMenuHidden": !(Kam4ControlsContainerScope.ShowPageComponents && MenuRTIs.MenuRTI.CanRead)}'
+ng-controller = 'MenuHeaderMainController'>
+<div 
+class = 'horizontal-menu-container'>
+<div
+class = 'header-inner header-md-height'>
+<a href='#' class='btn-link toggle-sidebar hidden-lg-up pg pg-menu' pg-horizontal-menu-toggle>
+</a>
+<div class=''>
+</div>
+<div class='d-flex align-items-center'>
+</div>
+</div>
+<div
+control = 'MenuRTI'
+class = 'menu-bar header-sm-height'
+pg-horizontal-menu>
+<a href='#' class='btn-link toggle-sidebar hidden-lg-up pg pg-close' id='closeVMenu' pg-horizontal-menu-toggle>
+</a>
+<ul class=''>
+<li ng-if='menuItems[0].Visible' class='horizontal-app-menu-item' ng-class='{"horizontal-app-menu-item-active": menuItems[0].Selected == true}'>
+    <a href='{{menuItems[0].Href}}'>
+        <div style='display:flex'>
+            <span class=''>{{menuItems[0].Caption}}</span>
+        </div>
+    </a>
+</li>
+<li ng-if='menuItems[1].Visible' class='horizontal-app-menu-item' ng-class='{"horizontal-app-menu-item-active": menuItems[1].Selected == true}'>
+    <a>
+        <div style='display:flex'>
+            <span class='title'>{{menuItems[1].Caption}}</span>
+            <span class='arrow'></span>
+        </div>
+    </a>
+    <ul class=''>
+<li ng-if='menuItems[1].menuItems[0].Visible' class='horizontal-app-menu-item' ng-class='{"horizontal-app-menu-item-active": menuItems[1].menuItems[0].Selected == true}'>
+    <a href='{{menuItems[1].menuItems[0].Href}}'>
+        <div style='display:flex'>
+            <span class='title'>{{menuItems[1].menuItems[0].Caption}}</span>
+        </div>
+    </a>
+</li>
+<li ng-if='menuItems[1].menuItems[1].Visible' class='horizontal-app-menu-item' ng-class='{"horizontal-app-menu-item-active": menuItems[1].menuItems[1].Selected == true}'>
+    <a href='{{menuItems[1].menuItems[1].Href}}'>
+        <div style='display:flex'>
+            <span class='title'>{{menuItems[1].menuItems[1].Caption}}</span>
+        </div>
+    </a>
+</li>
+<li ng-if='menuItems[1].menuItems[2].Visible' class='horizontal-app-menu-item' ng-class='{"horizontal-app-menu-item-active": menuItems[1].menuItems[2].Selected == true}'>
+    <a href='{{menuItems[1].menuItems[2].Href}}'>
+        <div style='display:flex'>
+            <span class='title'>{{menuItems[1].menuItems[2].Caption}}</span>
+        </div>
+    </a>
+</li></ul>
+</li></ul>
+</div>
+</div>
+</div>

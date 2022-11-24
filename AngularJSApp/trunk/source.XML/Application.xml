@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="IdeaPortal2.XMLBuilder.Application" xsi:schemaLocation="IdeaPortal2.XMLBuilder.Application
+D:\Programmazione\ideatech\IdeaPortal2\XMLBuilder\Application.xsd">
+	<Versione xmlns="">1</Versione>	
+	<Config xmlns="">
+		<AppName>AngularJSApp</AppName>		
+		<RootPath>AngularJSApp</RootPath>
+		<DBPlatform>FireBird</DBPlatform>		
+		<Login>			
+			<LoginBackground>
+				<Title>Login Background Title</Title>
+				<Subtitle>Login Background Subtitle</Subtitle>
+			</LoginBackground>
+			<LoginForm>
+				<Title>Sign into your AngularJSApp account</Title>
+				<UsernameFieldTitle>Login</UsernameFieldTitle>
+				<UsernameFieldPlaceholder>User Name</UsernameFieldPlaceholder>
+				<PasswordFieldTitle>Password</PasswordFieldTitle>
+				<PasswordFieldPlaceholder>Credentials</PasswordFieldPlaceholder>
+				<LoginButtonText>Sign in</LoginButtonText>
+				<FieldRequiredMessage>Field Required</FieldRequiredMessage>
+				<WrongLoginMessage>Username or password incorrect!</WrongLoginMessage>
+			</LoginForm>
+			<LoginSoftwareCredits>
+				<Show>true</Show>
+				<Text>A &lt;img src='Images/logo-kam-def.png' style='width:100px'/&gt; software. Engineered by &lt;a href='http://www.ideatechsrl.com/'&gt;IdeaTech &lt;/a&gt;.</Text>
+			</LoginSoftwareCredits>
+		</Login>
+		<DBConfig>
+		  <StandardizeDBFieldNames>true</StandardizeDBFieldNames>
+		</DBConfig>	
+		<LoadingClass>fa fa-cog fa-spin fa-5x</LoadingClass>	
+		<GlobalCustomComponent>
+			<Name>GlobalCustomControl</Name>
+		</GlobalCustomComponent>
+	</Config>
+	<DefaultHtmlLinks xmlns="">
+		<Link>
+			<Rel>stylesheet</Rel>
+			<Href>Styles/Layout_AngularJSApp.css</Href>
+			<Type>text/css</Type>
+		</Link>
+	</DefaultHtmlLinks>	
+	<PersistentVariables xmlns="">
+		<Private>			
+		</Private>
+		<Public/>
+	</PersistentVariables>
+	<SecurityLevels xmlns="">
+		<!--  **************  -->
+		<!--  General Access  -->
+		<!--  **************  -->
+		<SecurityLevel>
+			<Name>Public</Name>
+			<Grant>
+				<CanRead>true</CanRead>
+				<CanInsert>true</CanInsert>
+				<CanDelete>true</CanDelete>
+				<CanEdit>true</CanEdit>
+				<Role>*</Role>
+			</Grant>
+		</SecurityLevel>
+		
+		<SecurityLevel>
+			<Name>Administration</Name>
+			<Grant>
+				<CanRead>true</CanRead>
+				<CanInsert>true</CanInsert>
+				<CanDelete>true</CanDelete>
+				<CanEdit>true</CanEdit>
+				<Role>Administrator</Role>
+			</Grant>
+		</SecurityLevel>
+		<SecurityLevel>
+			<Name>Restricted</Name>
+			<Inherits>Administration</Inherits>
+			<Grant>
+				<CanRead>true</CanRead>
+				<CanInsert>true</CanInsert>
+				<CanDelete>true</CanDelete>
+				<CanEdit>true</CanEdit>
+				<Role>Authorized</Role>
+			</Grant>
+		</SecurityLevel>		
+	</SecurityLevels>
+	
+	<CustomComponents xmlns="">		
+	</CustomComponents>
+	
+	<Pages xmlns="">	
+		<BasePage>
+			<!-- Pagina base. Deve esistere. E' l'antenato di tutte le pagine (se non diversamente specificato nelle pagine). Nei discendenti le proprietà non specificate vengono prese dagli antenati -->
+			<Name>IPBasePage</Name>
+			<!-- Cerca file xml con nome: Page.Name.xml -->
+			<ParentPage/>
+			<!-- Deve essere vuota -->
+			<Template/>
+			<!-- Puo' essere specifica a livello di pagina -->
+			<CssKey>ScreenCSSFileName</CssKey>
+			<!-- Puo' essere specifica a livello di pagina -->
+			<Path>.</Path>
+			<!-- Cartella (sotto root) che conterrà la pagina-->
+			<SecurityLevel>Restricted</SecurityLevel>
+			<!-- Indica i ruoli che possono accedere alla pagina, separati da virgola -->
+			<CustomPage>false</CustomPage>
+			<Header>Header.ascx</Header>
+			<!-- nome del controllo ascx che fa header -->
+		</BasePage>
+		<Page>
+			<Name>Index</Name>
+			<ParentPageName></ParentPageName>
+			<SecurityLevel>Restricted</SecurityLevel>
+		</Page>	
+		<Page>
+			<Name>LogOut</Name>
+			<ParentPageName></ParentPageName>
+			<SecurityLevel>Restricted</SecurityLevel>
+		</Page>
+		<Page>
+			<Name>Diario</Name>
+			<ParentPageName></ParentPageName>
+			<SecurityLevel>Restricted</SecurityLevel>
+		</Page>
+		<Page>
+			<Name>Lingue</Name>
+			<ParentPageName></ParentPageName>
+			<SecurityLevel>Restricted</SecurityLevel>
+		</Page>
+		<Page>
+			<Name>Stringhe</Name>
+			<ParentPageName></ParentPageName>
+			<SecurityLevel>Restricted</SecurityLevel>
+		</Page>
+		<Page>
+			<Name>Traduzioni</Name>
+			<ParentPageName></ParentPageName>
+			<SecurityLevel>Restricted</SecurityLevel>
+		</Page>
+	</Pages>
+	
+	<CommonReferences xmlns="">
+	</CommonReferences>
+	
+	<CommonIncludes xmlns="">		
+	</CommonIncludes>
+	
+	<Includes xmlns="">
+	</Includes>
+	
+	<IPGridViewStyles xmlns="">
+		<ViewStyle>
+			<Name>Default</Name>
+			<PageSize>20</PageSize>
+			<AlternatingCssClass>AlternatingRow</AlternatingCssClass>
+			<NormalCssClass/>
+			<SelectedCssClass>SelectedRow</SelectedCssClass>
+		</ViewStyle>
+	</IPGridViewStyles>
+	
+	<MenuStyles xmlns="">
+		<MenuStyle>
+			<Name>ApplicationMenu</Name>
+			<Position>SubHeader</Position>
+		</MenuStyle>
+		<MenuStyle>
+			<Name>PageLateralMenu</Name>
+			<Position>LeftBlock</Position>
+		</MenuStyle>
+		<MenuStyle>
+			<Name>PageMenu</Name>
+			<Position>PageTop</Position>
+		</MenuStyle>
+	</MenuStyles>
+
+	<Lookups xmlns="">
+		<LookupData>
+			<Name>Languages</Name>
+			<SourceQuery>
+				select IDLANGUAGE, DESCRIPTION
+				from V_LANGUAGES
+			</SourceQuery>
+			<SourceKeyField>IDLANGUAGE</SourceKeyField>
+			<SourceLookupField>DESCRIPTION</SourceLookupField>
+		</LookupData>
+
+		<LookupData>
+			<Name>Idstrings</Name>
+			<SourceQuery>
+				select IDSTRING, LABEL
+				from V_IDSTRINGS
+			</SourceQuery>
+			<SourceKeyField>IDSTRING</SourceKeyField>
+			<SourceLookupField>LABEL</SourceLookupField>
+		</LookupData>
+	</Lookups>
+	
+	<Menus xmlns="">		
+		<Menu>
+			<SecurityLevel>Public</SecurityLevel>
+			<Name>HeaderMain</Name>
+			<StyleName>ApplicationMenu</StyleName>	
+		
+			<Entry>
+				<Name>Index</Name>
+				<!--Usata per definire il menu attivo quando una pagina attiva il menu -->
+				<Caption>Index</Caption>
+				<TargetPage>Index</TargetPage>
+				<ImageFileName></ImageFileName>
+				<!-- se mancano entrambi scatena solo evento -->
+			</Entry>
+
+			<Entry>
+				<Name>Dizionario</Name>
+				<!--Usata per definire il menu attivo quando una pagina attiva il menu -->
+				<Caption>Dizionario</Caption>
+				<TargetPage>Lingue</TargetPage>
+				<!-- se mancano entrambi scatena solo evento -->
+				<SubMenu>	
+			
+					<Entry>
+						<Name>Lingue</Name>
+						<!--Usata per definire il menu attivo quando una pagina attiva il menu -->
+						<Caption>Lingue</Caption>
+						<TargetPage>Lingue</TargetPage>
+						<ImageFileName></ImageFileName>
+						<!-- se mancano entrambi scatena solo evento -->
+					</Entry>
+					<Entry>
+						<Name>Stringhe</Name>
+						<!--Usata per definire il menu attivo quando una pagina attiva il menu -->
+						<Caption>Stringhe</Caption>
+						<TargetPage>Stringhe</TargetPage>
+						<ImageFileName></ImageFileName>
+						<!-- se mancano entrambi scatena solo evento -->
+					</Entry>
+					<Entry>
+						<Name>Traduzioni</Name>
+						<!--Usata per definire il menu attivo quando una pagina attiva il menu -->
+						<Caption>Traduzioni</Caption>
+						<TargetPage>Traduzioni</TargetPage>
+						<ImageFileName></ImageFileName>
+						<!-- se mancano entrambi scatena solo evento -->
+					</Entry>
+				</SubMenu>
+			</Entry>
+		</Menu>	
+	</Menus>
+</Application>
+						

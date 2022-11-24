@@ -1,0 +1,7 @@
+C:\Programmazione\mixangular\AngularJSApp\trunk\source.WEB\bin\AngularJSApp.Common.dll
+C:\Programmazione\mixangular\AngularJSApp\trunk\source.WEB\bin\AngularJSApp.Common.pdb
+C:\Programmazione\mixangular\AngularJSApp\trunk\source.WEB\AngularJSApp.Common\obj\Debug\AngularJSApp.Common.csproj.AssemblyReference.cache
+C:\Programmazione\mixangular\AngularJSApp\trunk\source.WEB\AngularJSApp.Common\obj\Debug\AngularJSApp.Common.csproj.CoreCompileInputs.cache
+C:\Programmazione\mixangular\AngularJSApp\trunk\source.WEB\AngularJSApp.Common\obj\Debug\AngularJSApp.Common.csproj.CopyComplete
+C:\Programmazione\mixangular\AngularJSApp\trunk\source.WEB\AngularJSApp.Common\obj\Debug\AngularJSApp.Common.dll
+C:\Programmazione\mixangular\AngularJSApp\trunk\source.WEB\AngularJSApp.Common\obj\Debug\AngularJSApp.Common.pdb

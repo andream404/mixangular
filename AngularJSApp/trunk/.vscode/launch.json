@@ -1,0 +1,84 @@
+{
+    "version": "0.2.0",
+    "configurations": 
+    [  
+        //-------------------------------------------------------------------//    
+
+        /* Esegue run di un eseguibile scelto attraverso selezione tramite file picker 
+        *
+        * >> Vedi input "consoleArgs" per dettagli
+        *
+        * N.B.: Config per relativo file .CSPROJ (rebuild necessaria dopo modifiche)
+        > Sotto <PropertyGroup Condition="'$(Configuration)'=='Debug'"> del .csproj relativo
+            . Set <PlatformTarget>x64</PlatformTarget>
+            . Set <DebugSymbols>True</DebugSymbols>                
+            . Set <DebugType>portable</DebugType>        
+            . Set <Optimize>False</Optimize>                
+        */
+        {
+            "name": "Launch Console Project",
+            "type": "clr",
+            "request": "launch",
+            "program": "${input:EXEFileChooser}",
+            "args" : "${input:consoleArgs}",
+            "console": "integratedTerminal"
+        },
+
+        //-------------------------------------------------------------------//
+
+        /* Debug attach ad un processo scelto (es: w3wp.exe)
+        *
+        * N.B.: Config per relativi file .CSPROJ (rebuild necessaria dopo modifiche)
+        > Sotto <PropertyGroup Condition="'$(Configuration)'=='Debug'"> dei .csproj relativi
+            . Set <DebugSymbols>True</DebugSymbols>                
+            . Set <DebugType>portable</DebugType>        
+            . Set <Optimize>False</Optimize>
+        */
+        {
+            "name": "Debug Attach to Process",
+            "type": "clr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+
+        //-------------------------------------------------------------------//
+    ],
+
+    "inputs":
+    [
+        //-------------------------------------------------------------------//
+
+        /* Input args per un'applicazione console
+        *
+        * Utilizzato da:
+            . "Build & Launch Console Project"
+            . "Launch Console Project"
+        *
+        */
+        {
+            "id": "consoleArgs",
+            "type": "promptString",
+            "description": "Console args here",
+            "default": ""
+        },
+
+        //-------------------------------------------------------------------//
+
+        /* Apre un filepicker per la scelta di file .exe
+        *
+        * Utilizzato da:
+            . "Launch Console Projecte"        
+        */
+        {
+            "id": "EXEFileChooser",
+            "type": "command",
+            "command": "shellCommand.execute",
+            "args": 
+            {
+                "command": "${workspaceFolder}\\.vscode\\exeFileChooser.bat"
+            }
+        }
+
+        //-------------------------------------------------------------------//
+    ]
+}

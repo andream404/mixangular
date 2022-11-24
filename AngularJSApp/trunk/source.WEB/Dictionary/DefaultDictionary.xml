@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dictionary>
+	<!-- elenco dei dizionari contenuti in ordine di colonna in cui sono riportati nelle keys. La prima colonna è sempre la chiave -->
+	<NameSpaces>
+		<NameSpace name="Default" />
+		<NameSpace name="IShort" />
+		<NameSpace name="DShort" />
+	</NameSpaces>
+	<!-- Prima colonna è la chiave, le altre le traduzione. Se oltre alla prima colonna c'è solo una traduzione, questa vale per tutte traduzioni-->
+	<Entries>
+	    HowTo;Come fare per...;Wie Zu...
+	</Entries>
+</Dictionary>

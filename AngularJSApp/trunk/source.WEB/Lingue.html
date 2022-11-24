@@ -1,0 +1,145 @@
+﻿<div id='LinguePage' 
+ng-init = 'Init()'
+class = 'PageClass'
+ng-show = 'Kam4ControlsContainerScope.ShowPageComponents'
+ng-controller = 'LinguePageController'>
+<div id='GLingueComponentContainer' 
+ng-init = 'Init()'
+class = 'GridContainerClass'
+ng-show = 'ComponentRTIs.ComponentRTI.CanRead === true'
+ng-controller = 'CursorGLingueController'>
+<div
+style = 'background-color: rgba(255, 255, 255, 0.8); display: block;'
+class = 'card-progress'
+pg-card
+on-loader-component-shown = 'OnLoaderComponentShown()'
+ng-show = 'ShowComponentLoader'>
+<div class='progress-circle-indeterminate progress-circle-complete'></div>
+</div>
+<div id='CursorGLingueComponentHeader'
+class = 'card card-default card-header ComponentHeaderClass'
+component-header
+ng-if = '{"ComponentHeaderFlex" : !IsButtonNewVisible() && !IsButtonEditVisible() &&!IsButtonSaveVisible() && !IsButtonCancelVisible()}'>
+<div
+class = 'ComponentHeaderLoader'
+ng-if = 'ShowComponentLoader'/>
+<div
+class = 'card-title'
+ng-if = 'IsTitleVisible()'>
+<span class = 'font-montserrat all-caps'>{{ComponentData.ComponentEntries.ComponentTitleEntry}}</span>
+</div>
+<div
+class = 'ComponentHeaderButtonContainer'>
+<div >
+<span
+ng-if = 'IsButtonNewVisible()'>
+<button title='{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonNewTooltipEntry}}' class='btn btn-complete btn-cons m-b-5 actionButton' type='button' ng-click='ButtonNewClick()'>{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonNewEntry}}</button>
+</span>
+<span
+ng-if = 'IsButtonEditVisible()'>
+<button title='{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonEditTooltipEntry}}' class='btn btn-complete btn-cons m-b-5 actionButton' type='button' ng-click='ButtonEditClick()'>{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonEditEntry}}</button>
+</span>
+<span />
+<span />
+<span
+ng-if = 'IsButtonSaveVisible()'>
+<button title='{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonSaveTooltipEntry}}' class='btn btn-complete btn-cons m-b-5 actionButton' type='button' ng-click='ButtonSaveClick()' ng-disabled = 'IsActionButtonDisabled()'>{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonSaveEntry}}</button>
+</span>
+<span
+ng-if = 'IsButtonSaveAndNewVisible()'>
+<button title='{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonSaveAndNewTooltipEntry}}' class='btn btn-complete btn-cons m-b-5 actionButton' type='button' ng-click='ButtonSaveAndNewClick()' ng-disabled = 'IsActionButtonDisabled()'>{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonSaveAndNewEntry}}</button>
+</span>
+<span
+ng-if = 'IsButtonCancelVisible()'>
+<button title='{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonCancelTooltipEntry}}' class='btn btn-complete btn-cons m-b-5 actionButton' type='button' ng-click='ButtonCancelClick()' ng-disabled = 'IsActionButtonDisabled()'>{{ComponentData.ComponentEntries.ButtonsPanelEntries.ButtonCancelEntry}}</button>
+</span>
+</div>
+<div
+class = 'ComponentHeaderToolClass btn-group'
+ng-show = 'ComponentShowMode != "edit"'>
+<span class='GridTools btn-group btn-cons'>
+    <button type='button' class='btn btn-default m-b-5' title='{{GlobalEntries.PageEntries.GridEntries.ResetString}}' ng-click='ButtonResetGridClick()'>
+        <span class='fa-stack'>
+            <i class='fa fa-filter '></i>
+            <i class='fa fa-close red fa-stack-1x fa-over'></i>
+        </span>
+    </button>
+    <button type='button' class='btn btn-default m-b-5' title='{{GlobalEntries.PageEntries.GridEntries.RestoreString}}' ng-click='ButtonRestoreGridClick()' ng-if='IsButtonRestoreVisible()'>
+        <span class='fa-stack'>
+            <i class='fa fa-filter '></i>
+            <i class='fa fa-history green fa-stack-1x fa-over'></i>
+        </span>
+    </button>
+</span>
+<a class='btn btn-default DTTT_button_xls' id='ToolTables_tableWithExportOptions_1' tabindex='0' aria-controls='tableWithExportOptions' data-original-title='' title='{{GlobalEntries.PageEntries.GridEntries.ExportXlsString}}' ng-click='ButtonExportXLSClick()'>
+    <span>
+        XLS <i class='fa fa-download'></i>
+    </span>
+    <div style='position: absolute; left: 0px; top: 0px; width: 48px; height: 35px; z-index: 99;'/>
+</a>
+</div>
+</div>
+</div>
+<div id='GLingueGridContainer' >
+<div class='card GridContainerPanel'>
+    <div class='card-block'>
+        <div class='row' id='GLingueGridResponsiveFiltersContainer'>
+        </div>
+        <table	class='table table-hover'
+                id='GLingueGrid'
+                ui-jq='dataTable'
+                ui-options='DataTableOptions'
+                responsive-kam4-datatable
+                grid-columns = 'GridColumns'
+                grid-summary-data = 'GridSummaryData'
+                on-title-cell-click = 'DataTableOnTitleCellClick'
+                on-detail-cell-click = 'DataTableOnDetailCellClick'
+                control = 'ResponsiveKam4DatatableControl'
+                on-cell-click = 'DataTableOnCellClick(eventArgs)'
+                component-show-mode = 'ComponentShowMode'
+                component-data = 'ComponentData'
+                ng-class='ComponentShowMode'
+                never-show-in-mobile='false'
+                prevent-unload
+        />
+    </div>
+    <div class='card-block GridPager'>
+        <div class='row'>
+            <div style='float: right'>
+                <div class='col-sm-4' style='width: 200px; padding-right: 0px;' ng-show='ComponentShowMode === "browse" || ComponentShowMode === "edit"'>
+                    <div class='form-group'>
+                        <label>{{GlobalEntries.PageEntries.GridEntries.PagerGoToPageString}}</label>
+                        <input type='int' class='form-control' ng-change='OnPagerIndexInputValueChanged()' ng-model='CurrentPageIndex' ng-model-options='{ debounce: 1000 }'  ng-disabled='IsPagerIndexInputDisabled()' />
+                    </div>
+                </div>
+                <div class='col-sm-4' style='width: 200px; padding-right: 0px;' ng-show='ComponentShowMode === "browse"'>
+                    <div class='form-group'>
+                        <label class=''>{{GlobalEntries.PageEntries.GridEntries.PagerShowRowsString}}</label>
+                        <ui-select append-to-body="false" search-enabled="false" ng-model='SelectedItemsPerPageObject.Value' theme='bootstrap' on-select='OnSelectItemsPerPage($select.selected)' append-to-body='true'>
+                            <ui-select-match >{{$select.selected.text}}</ui-select-match>
+                            <ui-select-choices repeat='item in ItemsPerPageOptions'>
+                                <span ng-bind-html='TrustAsHtml(item.text)'></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class='col-sm-4' style='width: auto; min-width: 200px; padding-right: 0px;' ng-show='ComponentShowMode === "browse" || ComponentShowMode === "edit"'>
+                    <div class='form-group'>
+                        <label style='width: 100%;'>&nbsp;</label>
+                        <div style='display: inline; min-height: 35px; padding: 12px 9px; vertical-align: -webkit-baseline-middle;'>
+                            <span>{{GridSummaryData.Begin + 1}} - {{GridSummaryData.End}} {{GlobalEntries.PageEntries.GridEntries.PagerRangeString}} {{GridSummaryData.TotalRowsCountDescr}}</span>
+                        </div>
+                        <uib-pagination id='GLingueGridPagination' class='PaginationStyle'
+                          ng-disabled='IsPaginationControlDisabled()'
+                          total-items='PaginationTotalRowsCount' ng-model='CurrentPageIndex' items-per-page='PageSize' previous-text='&lsaquo;' next-text='&rsaquo;' max-size='0'
+                          ng-change='OnPaginationChange()' >
+                        </uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>

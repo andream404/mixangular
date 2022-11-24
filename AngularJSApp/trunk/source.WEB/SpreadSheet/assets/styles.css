@@ -1,0 +1,215 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~simplebar/dist/simplebar.css';
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+@font-face {
+  font-family: Lato;
+  src: url(/assets/fonts/Raleway-Regular.ttf) format('truetype')
+}
+
+body {
+  color: #626262;
+  background-color: white !important;
+}
+
+#spreadsheetContainer {
+  font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  font-size: 12px;
+  padding: 25px;
+}
+
+#spreadsheet{
+
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.SpreadsheetHeader {
+  border: 0px !important;
+}
+
+.spreadsheet-row{
+  display: flex;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.spreadsheet-column-filters-row{
+  height: 40px;
+}
+
+.cell{
+  height: 24px;
+  width: 100px;
+  position: relative;
+  border-right: 1px solid #E2E3E3;
+  border-bottom: 1px solid #E2E3E3;
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+  flex-grow: 1;
+}
+
+.cell-left{
+  border-left: 1px solid #E2E3E3;
+}
+
+.cell-top{
+  border-top: 1px solid #E2E3E3;
+}
+
+.row-number-column {
+  height: auto;
+  width: 80px;
+  background-color: #f4f4f4;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 500;
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.columnHeader, .columnFilterContainer{
+  font-size: 13px;
+  width: 100px;
+  font-weight: 500;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+.columnHeader {
+  background-color: #ddd;
+  height: 30px;
+}
+.columnFilterContainer {
+  background-color: #efefef;
+  height: 50px;
+}
+div.multipleFilterWrapper app-filter input.filterSingleInput {
+  margin-top: 7px;
+}
+
+.cell-input {
+  border: 0;
+  padding: 0;
+  width: 100px;
+  height: 100%;
+}
+
+#spreadsheet .highlighted-col{
+  background-color: #ddd;
+}
+
+#spreadsheet .highlighted-cell{
+  background-color: #E7F0FD;
+}
+
+
+#spreadsheet .highlighted-cell-top{
+  border-top: 1px solid;
+  border-color: #1A73E8;
+}
+
+.selected-cell{
+  border-color: #1A73E8;
+}
+
+.input-cell{
+  border: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  position: absolute;
+  border-right: 1px solid #E2E3E3;
+  border-bottom: 1px solid #E2E3E3;
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.b-b-0 {
+  border-bottom: 0;
+}
+
+.m-l-20 {
+  margin-left: 20px;
+}
+
+.m-t-5 {
+  margin-top: 5px;
+}
+
+.filter-column {
+  float: right;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.center-uppercase {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.m-b-10 {
+  margin-bottom: 10px !important;
+}
+
+.cell-index-width {
+  width: 80px;
+}
+
+.lookup-popup {
+  position: absolute;
+  z-index: 9;
+  background-color: white;
+  width: 116px;
+  border: 1px solid #ededed;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px 0px rgba(158,155,158,1);
+}
+
+.lookup-popup mat-list-item:hover {
+  cursor: pointer;
+  background-color: #F0F2F3;
+}
+
+
+.lookup-popup mat-list {
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: #FFF;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+}
+::-webkit-scrollbar-thumb {
+    background: #CCC;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #AAA;
+}
+::-webkit-scrollbar-thumb:active {
+    background: #888;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.singleMultiFilterContainer .filterSingleInput {
+  border: 0px solid red !important;
+}

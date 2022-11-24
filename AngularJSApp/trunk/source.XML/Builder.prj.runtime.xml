@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BuilderRunTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="IdeaPortal2.XMLBuilder.BuilderRunTime">
+  <BuiltFile>
+    <PageName>Index</PageName>
+    <Date>2022-11-24T09:31:41.8407993+01:00</Date>
+    <RelativePath />
+  </BuiltFile>
+  <BuiltFile>
+    <PageName>Traduzioni</PageName>
+    <Date>2022-11-24T09:31:42.2753887+01:00</Date>
+    <RelativePath />
+  </BuiltFile>
+  <BuiltFile>
+    <PageName>Diario</PageName>
+    <Date>2022-11-24T09:31:41.8930414+01:00</Date>
+    <RelativePath />
+  </BuiltFile>
+  <BuiltFile>
+    <PageName>IPBasePage</PageName>
+    <Date>2022-11-24T09:31:41.701825+01:00</Date>
+    <RelativePath />
+  </BuiltFile>
+  <BuiltFile>
+    <PageName>Lingue</PageName>
+    <Date>2022-11-24T09:31:41.9865219+01:00</Date>
+    <RelativePath />
+  </BuiltFile>
+  <BuiltFile>
+    <PageName>LogOut</PageName>
+    <Date>2022-11-24T09:31:41.8517696+01:00</Date>
+    <RelativePath />
+  </BuiltFile>
+  <BuiltFile>
+    <PageName>Stringhe</PageName>
+    <Date>2022-11-24T09:31:42.058322+01:00</Date>
+    <RelativePath />
+  </BuiltFile>
+</BuilderRunTime>

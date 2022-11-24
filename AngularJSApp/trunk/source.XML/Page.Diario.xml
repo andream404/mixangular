@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PageControl xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="IdeaPortal2.XMLBuilder.PageControl" xsi:schemaLocation="D:\Programmazione\ideatech\IdeaPortal2\XMLBuilder\PageControl.xsd">
+    <Name xmlns="">Diario</Name>
+    <Title xmlns="">Diario</Title>
+	<PageMenus xmlns="">
+	    <PageMenu>
+            <Name>HeaderMain</Name>
+        </PageMenu>
+    </PageMenus>
+    <PersistentVariables xmlns="">
+        <PersistentVariable VarType="string" DefaultValue="">TIPOELEMENTO</PersistentVariable>
+        <PersistentVariable VarType="integer" DefaultValue="0">IDELEMENTO</PersistentVariable>
+    </PersistentVariables>
+    <Blocks xmlns="" />
+	<SubComponent xmlns="">
+        <IPGrid xmlns="">
+	        <Name xmlns="">GDiario</Name>
+	        <DataSet>
+		        <SelectSQL>SELECT DIARIO.IDENTITADIARIO,
+                            DIARIO.DATA,
+                            DIARIO.UTENTE,
+                            DIARIO.TIPOELEMENTO,
+                            DIARIO.ELEMENTO,
+                            DIARIO.TIPOATTIVITA,
+                            DIARIO.ATTIVITA,
+                            DIARIO.NOTEATTIVITA
+                            FROM DIARIO
+                            WHERE DIARIO.ELEMENTO=0$PersistentVar.IDELEMENTO$ AND DIARIO.TIPOELEMENTO='$PersistentVar.TIPOELEMENTO$'
+                </SelectSQL>
+                <DeleteSQL></DeleteSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <UpdateSQL></UpdateSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <InsertSQL></InsertSQL><!-- se lasciata in bianco calcola automaticamente con il command builder -->
+                <PrimaryKey>IDENTITADIARIO</PrimaryKey>
+                <Generator>GEN_DIARIO_ID</Generator>
+                <UpdateTable>diario</UpdateTable>
+                <CanInsert>false</CanInsert>
+                <CanDelete>false</CanDelete>
+                <CanEdit>false</CanEdit>
+				<DefaultSort>DIARIO.IDENTITADIARIO DESC</DefaultSort>
+	        </DataSet>
+            <ViewStyleName>Default</ViewStyleName>
+	        <ReadOnly>true</ReadOnly>
+	        <DataColumns>
+                <Column>
+                    <ColumnType>Link</ColumnType>
+                    <Text></Text>
+                    <FieldName>ELEMENTO</FieldName>
+                    <Visible>false</Visible>
+                    <OrderBy>diario.elemento</OrderBy>
+                    <HeaderText>elemento</HeaderText>
+                </Column>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>TIPOATTIVITA</FieldName>
+                    <Visible>false</Visible>
+                    <OrderBy>diario.tipoattivita</OrderBy>
+                    <HeaderText>tipoattivita</HeaderText>
+                </Column>
+                <Column>
+                    <ColumnType>Link</ColumnType>
+                    <Text></Text>
+                    <FieldName>ATTIVITA</FieldName>
+                    <Visible>true</Visible>
+                    <HeaderText>attivita</HeaderText>
+                    <Width>250</Width>
+                    <OrderBy>diario.attivita</OrderBy>
+                </Column>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>DATA</FieldName>
+                    <Visible>true</Visible>
+                    <OrderBy>diario.data</OrderBy>
+                    <HeaderText>data</HeaderText>
+                    <DataStyleName>TimeStamp</DataStyleName>
+                    <Filter>
+                        <Mode>MoreThan</Mode>
+                        <ControlType>Date</ControlType>
+                        <Caption>DAL</Caption>
+                        <DefaultValue></DefaultValue>
+                        <EmptyValue></EmptyValue>
+                    </Filter>
+                    <Filter>
+                        <Mode>LessThan</Mode>
+                        <ControlType>Date</ControlType>
+                        <Caption>AL</Caption>
+                        <DefaultValue></DefaultValue>
+                        <EmptyValue></EmptyValue>
+                    </Filter>
+                </Column>
+                <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>UTENTE</FieldName>
+                    <Visible>true</Visible>
+                    <OrderBy>diario.utente</OrderBy>
+                    <HeaderText>utente</HeaderText>
+                    <FooterText></FooterText>
+                    <Filter>
+                        <Mode>Containing</Mode>
+                        <ControlType>Text</ControlType>
+                        <Caption>UTENTE</Caption>
+                        <DefaultValue></DefaultValue>
+                        <EmptyValue></EmptyValue>
+                    </Filter>
+                </Column>
+
+                 <Column>
+                    <ColumnType>Text</ColumnType>
+                    <Text></Text>
+                    <FieldName>NOTEATTIVITA</FieldName>
+                    <Visible>true</Visible>
+                    <HeaderText>noteattivita</HeaderText>
+                    <FooterText></FooterText>
+                    <OrderBy>diario.noteattivita</OrderBy>
+                    <Filter>
+                        <Mode>Containing</Mode>
+                        <ControlType>Text</ControlType>
+                        <Caption>NOTEATTIVITA</Caption>
+                        <DefaultValue></DefaultValue>
+                        <EmptyValue></EmptyValue>
+                    </Filter>
+                </Column>
+
+	        </DataColumns>
+	    </IPGrid>
+    </SubComponent>
+</PageControl>

@@ -1,0 +1,26 @@
+﻿<div ng-controller='ErrorPageController' ng-init='Init()'>
+    <div class='ErrorPageClass'>
+        <div class='ErrorStandardClass'>
+            <p>{{ExceptionStandardMessage}}</p>
+            <button class='btn btn-complete btn-cons m-b-5 actionButton' ng-click='GoToPrevoiusPage()' ng-show='IsGenericException()'>{{SourcePageInErrorGoToPreviousPageButtonEntry}}</button>
+            <button class='btn btn-complete btn-cons m-b-5 actionButton' ng-click='GoToStartPage()' ng-show='IsGoToStartPageException()'>{{SourcePageInErrorGoToStartPageButtonEntry}}</button>
+        </div>
+        <div id='ErrorSummary' class='ErrorSummaryClass'  ng-if='ExceptionSummaryCanRead'>
+            {{ExceptionMessage}} <br />
+            <div ng-if='ExceptionMessageText != null'>
+                {{ExceptionMessageText}}
+            </div>
+            <div ng-if='ExceptionWhere != null'>
+                {{ExceptionWhere}}
+            </div>
+        </div>
+        <div id='ErrorDetails' class='ErrorDetailsClass' ng-if='ExceptionDetailsCanRead'>
+            <div ng-Hide='hideStackTrace'>
+                <a style='font-weight:bold;'>{{Status}} - {{StatusText}}</a><br />
+                <a style='font-weight:bold;'>Type: </a>{{ExceptionType}}<br />
+                <div style='font-style: italic;' class='AutoWrapLines'>{{StackTrace}}</div>
+            </div>
+            <div ng-bind-html='HtmlErrorBody' class = 'ErrorHTMLClass' />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿<div id='SpeechToTextTemplate' 
+class = 'mic-container'>
+<img        
+id = "ImgMicStopped"
+ng-init="micsrc = 'Images/mic-stopped.png'"
+ng-src = '{{ micsrc }}'
+ng-mouseover = "micsrc = 'Images/mic-hover.png'"
+ng-mouseout = "micsrc = 'Images/mic-stopped.png'"
+class='mic paused'
+ng-click='startstt()'
+ng-show='!SpeechToTextFactory.IsRecording && !micactive && isSupportedBrowser()' />
+<img
+id = "ImgMicHover"
+ng-src='Images/mic-hover.png'
+class='mic pulsing'
+ng-click='stopstt()'
+ng-show='micactive && isSupportedBrowser()'
+ng-class="{'hidden' : !micactive}" />
+<img
+id = "ImgMicDisabled"
+ng-src='Images/mic-disabled.png'
+class='mic disabled'
+ng-show='SpeechToTextFactory.IsRecording && !micactive && isSupportedBrowser()' />
+</div>

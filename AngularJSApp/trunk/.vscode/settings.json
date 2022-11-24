@@ -1,0 +1,19 @@
+{
+    //-----------------------------------------------------------------------//
+
+    /* "Command Variable" extension zone 
+    *
+    *   Qui delle coppie chiave-valore utilizzate poi in diverse 
+        configurazioni di launch.json e tasks.json
+    */
+
+    /* Utilizzata in tasks.json da:
+        . "Build (default)"
+        . "Clean (default)" 
+        . "Restore (default)"
+    */
+    "KAMSettings.Solutions.defaultBuildSolution": "source.WEB\\AngularJSApp.sln"
+
+    //-----------------------------------------------------------------------//
+
+}

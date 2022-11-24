@@ -1,0 +1,114 @@
+﻿<div id='LoginForm' 
+ng-init = 'Init()'
+class = 'login-wrapper'
+ng-enter = 'DoLogin()'
+ng-controller = 'LoginController'>
+<div id='LoginLoading' 
+class = 'LoadingControl'>
+<div class='progress'>
+    <div class='progress-bar-indeterminate progress-bar-complete'></div>
+</div>
+</div>
+<div 
+class = 'bg-pic'>
+<!-- START Background Pic-->
+<img alt='' class='lazy loginBackground' login-Pic></img>
+<!-- END Background Pic-->
+<!-- START Background Caption-->
+<div class='bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20'>
+    <h2 class='semi-bold text-white'>{{LoginEntries.LoginBackgroundEntries.TitleEntry}}</h2><p class='small'>{{LoginEntries.LoginBackgroundEntries.SubtitleEntry}}</p>
+</div>
+<!-- END Background Caption-->
+</div>
+<div 
+class = 'login-container bg-white'>
+<div id='LanguageNamespaceContainer'
+class = 'LanguageNamespaceContainer m-l-20 p-l-25 sm-p-l-35''
+language-namespace-selector
+ng-if = 'LanguageNamespaceShow'>
+<ul>
+    <li>
+        <a>
+            <div>
+                <img class = 'LanguageNamespaceIcon' ng-src = '{{LanguageNamespaceEditValue.item.iconsrc}}'/>
+                <span class = 'LanguageNamespaceDescription'>{{LanguageNamespaceEditValue.item.itemDescription}}</span>
+                <span class = 'arrow'/>
+            </div>
+        </a>
+        <ul class=''>
+            <li ng-repeat= 'item in LanguageNamespaceComboBoxDataSource'>
+                <a ng-click = 'LanguageNamespaceComboBoxControlOnChange(item)'>
+                    <div>
+                        <img class = 'LanguageNamespaceIcon' ng-src = '{{item.iconsrc}}'/>
+                        <span class = 'LanguageNamespaceDescription'>{{item.itemDescription}}</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div id='LoginFormLogoContainer'
+class = 'p-l-70 p-r-70 p-t-50 sm-p-l-35 sm-p-r-35 sm-p-t-40'>
+<img
+login-Pic
+class = 'loginLogo'/>
+</div>
+<div id='LoginFormContainer'
+class = 'p-l-70 p-r-70 sm-p-l-35 sm-p-r-35'>
+<div id='LoginFormTitleContainer'
+class = 'p-t-35'>
+<p id='LoginFormTitle'>
+    {{LoginEntries.LoginFormEntries.TitleEntry}}
+</p>
+</div>
+<form id='form-login'
+role = 'form'
+class = 'p-t-15'
+name = 'FLoginForm'>
+<!-- START Form Control-->
+<div id = 'LoginFormUsernameContainer' class='form-group form-group-default' pg-form-group control='UsernameFormGroupRTI' ng-class = '{ "has-error" : FLoginForm.username.$invalid && !FLoginForm.username.$pristine, "LoginFormFieldEmpty" : FLoginForm.username.$pristine && (username == undefind || username == "") }'>
+    <label>{{LoginEntries.LoginFormEntries.UsernameFieldTitleEntry}}</label>
+    <div>
+        <input ng-model='username' id='usernameInput' type='text' name='username' ng-required = 'true' placeholder='{{LoginEntries.LoginFormEntries.UsernameFieldPlaceholderEntry}}' class='form-control' ng-change = 'CheckButtonLoginDisableStatus(); errorMessage(false)'/>
+    </div>
+</div>
+<label for = 'username' class = 'error' ng-show = 'FLoginForm.username.$invalid && !FLoginForm.username.$pristine && FLoginForm.username.$error.required'>{{LoginEntries.LoginFormEntries.FieldRequiredMessageEntry}}</label>
+<!-- END Form Control-->
+<!-- START Form Control-->
+<div id = 'LoginFormPasswordContainer' class='form-group form-group-default' pg-form-group control='PasswordFormGroupRTI' ng-class = '{ "has-error" : FLoginForm.password.$invalid && !FLoginForm.password.$pristine, "LoginFormFieldEmpty" : FLoginForm.password.$pristine && (password == undefind || password == "") }'>
+    <label>{{LoginEntries.LoginFormEntries.PasswordFieldTitleEntry}}</label>
+    <div class='controls'>
+        <input ng-model='password' id='passwordInput' type='password' class='form-control' ng-required = 'true' name='password' placeholder='{{LoginEntries.LoginFormEntries.PasswordFieldPlaceholderEntry}}' ng-change = 'CheckButtonLoginDisableStatus(); errorMessage(false)'/>
+    </div>
+</div>
+<label for = 'password' class = 'error' ng-show = 'FLoginForm.password.$invalid && !FLoginForm.password.$pristine && FLoginForm.password.$error.required'>{{LoginEntries.LoginFormEntries.FieldRequiredMessageEntry}}</label>
+<!-- START Form Control-->
+<!-- END Form Control-->
+<div class='alert alert-danger' id='LoginFail' role='alert'>{{LoginEntries.LoginFormEntries.WrongLoginMessageEntry}}</div>
+<div class='row'>
+    <div class='col-md-12 no-padding sm-p-l-10'>
+        <div id = 'keepMeSignedInCheckbox' class='checkbox'>
+            <input value='1' id='keepMeSignedInput' type='checkbox' ng-model='keepMeSignedIn'>
+            <label for='keepMeSignedInput'>{{LoginEntries.LoginFormEntries.KeepMeSignedInEntry}}</label>
+        </div>
+    </div>
+</div>
+<button id='buttonLoginDiv' type='submit' class='btn btn-complete btn-cons m-t-10' ng-click='DoLogin()' >{{LoginEntries.LoginFormEntries.LoginButtonTextEntry}}</button>
+</form>
+</div>
+<div id='LoginFormFooter'
+class = 'pull-bottom full-width'>
+<div class='p-l-70 p-r-70 sm-p-l-35 sm-p-r-35 m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix'>
+    <div id='loginCreditsLogoContainer' class='col-sm-3 no-padding'>
+        <img alt='' class='m-t-5 loginCreditsLogo' login-Pic height='60' width='60'></img>
+    </div>
+    <div class='col-sm-9 no-padding m-t-10'>
+        <p>
+            <small>A <img src='Images/logo-kam-def.png' style='width:100px'/> software. Engineered by <a href='http://www.ideatechsrl.com/'>IdeaTech </a>.</small>
+        </p>
+    </div>
+</div>
+</div>
+</div>
+</div>

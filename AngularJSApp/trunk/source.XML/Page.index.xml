@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PageControl xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="IdeaPortal2.XMLBuilder.PageControl" xsi:schemaLocation="D:\Programmazione\ideatech\IdeaPortal2\XMLBuilder\PageControl.xsd">
+	<Name xmlns="">Index</Name>
+	<PageMenus xmlns="">
+		<PageMenu>
+			<Name>HeaderMain</Name>
+		</PageMenu>
+	</PageMenus>	
+</PageControl>
